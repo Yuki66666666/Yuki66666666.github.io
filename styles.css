@@ -204,40 +204,33 @@ nav {
 
 /* Skills Section */
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 2rem 0;
 }
 
-.skill-category {
+.skill-circle {
     background-color: var(--section-bg);
-    padding: 2rem;
-    border-radius: 8px;
     border: 1px solid var(--hover-color);
-}
-
-.skill-category h3 {
+    border-radius: 50%;
+    padding: 1rem 2rem;
+    text-align: center;
     color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.skill-category ul {
-    list-style: none;
-    padding-left: 1.5rem;
-}
-
-.skill-category ul li {
-    color: var(--secondary-color);
-    margin-bottom: 0.8rem;
-    position: relative;
-}
-
-.skill-category ul li::before {
-    content: '▹';
-    position: absolute;
-    left: -1.5rem;
-    color: var(--primary-color);
+.skill-circle:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    background-color: rgba(0, 240, 255, 0.05);
 }
 
 /* Responsive Design */
@@ -345,40 +338,103 @@ nav {
 
 /* 修改內容區塊樣式 */
 .section-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: var(--primary-color);
-    padding: 2rem;
-    margin: 1rem 0;
+    margin-bottom: 1rem;
     cursor: pointer;
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    transition: color 0.3s ease;
 }
 
 .section-title:hover {
-    border: 1px solid var(--primary-color);
-    background-color: rgba(0, 240, 255, 0.05);
-    border-radius: 8px;
+    color: var(--hover-color);
 }
 
-.section-title::after {
-    content: '+';
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
-
-.section-title.active::after {
-    content: '-';
-}
-
+/* 隱藏細項內容 */
 .section-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease;
+    display: block;
+    padding: 2rem 0;
 }
 
-.section-content.active {
-    max-height: 2000px; /* 足夠大的高度以顯示內容 */
-} 
+/* 彈出視窗樣式保持不變 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 25, 47, 0.95);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: var(--dark-bg);
+    margin: 5vh auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    border: 1px solid var(--primary-color);
+}
+
+.close {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    font-size: 2rem;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.modal-body {
+    margin-top: 2rem;
+}
+
+/* 添加网格布局样式 */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.grid-item {
+    background-color: var(--section-bg);
+    border: 1px solid var(--hover-color);
+    border-radius: 8px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    background-color: rgba(0, 240, 255, 0.05);
+}
+
+.grid-item h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.grid-item p {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Self Introduction 样式调整 */
+.section-content p {
+    font-size: 1.2rem;
+    margin: 0 2rem; /* 增加左右间距 */
+}

@@ -22,6 +22,40 @@ document.addEventListener('DOMContentLoaded', function() {
             closeModal();
         }
     });
+
+    // 在 script.js 中添加
+    document.querySelector('.book-button').addEventListener('click', function(e) {
+        e.preventDefault();
+        const modal = document.getElementById('contentModal');
+        const modalBody = modal.querySelector('.modal-body');
+        
+        modalBody.innerHTML = `
+            <h3>Contact Me</h3>
+            <form class="contact-form" onsubmit="sendEmail(event)">
+                <input type="email" id="sender-email" placeholder="Your Email" required>
+                <input type="text" id="subject" placeholder="Subject" required>
+                <textarea id="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        `;
+        
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
+
+    function sendEmail(event) {
+        event.preventDefault();
+        const senderEmail = document.getElementById('sender-email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        // 使用 mailto 協議開啟郵件客戶端
+        const mailtoLink = `mailto:ericyu32.ee10@nycu.edu.tw?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('From: ' + senderEmail + '\n\n' + message)}`;
+        window.location.href = mailtoLink;
+        
+        // 關閉模態框
+        closeModal();
+    }
 });
 
 function showModal(section) {

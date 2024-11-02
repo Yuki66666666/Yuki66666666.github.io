@@ -531,3 +531,20 @@ nav {
     max-width: 600px;  /* 調整這個值來控制最大寬度 */
     margin: 0 auto;
 }
+
+/* 調整 Machine Learning Project 的 PDF 大小 */
+[data-section="ml-project"] .pdf-viewer {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+[data-section="ml-project"] canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* PDF 控制按鈕的位置調整 */
+[data-section="ml-project"] .pdf-controls {
+    max-width: 800px;
+    margin: 0 auto 1rem auto;
+}

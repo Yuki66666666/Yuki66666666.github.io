@@ -126,7 +126,8 @@ nav {
 .section {
     padding: 100px 0;
     border-bottom: 1px solid var(--hover-color);
-    margin-top: 80px;
+    margin-top: 120px;
+    scroll-margin-top: 100px;
 }
 
 .container {
@@ -535,7 +536,7 @@ nav {
 
 /* 調整 Machine Learning Project 的 PDF 大小 */
 [data-section="ml-project"] .pdf-viewer {
-    max-width: 800px;
+    max-width: 400px;
     margin: 0 auto;
 }
 
@@ -588,4 +589,9 @@ nav {
 
 .contact-form button:hover {
     opacity: 0.8;
+}
+
+/* 添加平滑滾動效果 */
+html {
+    scroll-behavior: smooth;
 }

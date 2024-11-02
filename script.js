@@ -1,6 +1,21 @@
 const pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
+// 將 sendEmail 函數移到全局作用域
+function sendEmail(event) {
+    event.preventDefault();
+    const senderEmail = document.getElementById('sender-email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    
+    // 使用 mailto 協議開啟郵件客戶端
+    const mailtoLink = `mailto:ericyu32.ee10@nycu.edu.tw?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('From: ' + senderEmail + '\n\n' + message)}`;
+    window.location.href = mailtoLink;
+    
+    // 關閉模態框
+    closeModal();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // 添加网格项目点击事件
     document.querySelectorAll('.grid-item').forEach(item => {
@@ -23,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 在 script.js 中添加
+    // Contact Me 按鈕事件
     document.querySelector('.book-button').addEventListener('click', function(e) {
         e.preventDefault();
         const modal = document.getElementById('contentModal');
@@ -42,20 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
     });
-
-    function sendEmail(event) {
-        event.preventDefault();
-        const senderEmail = document.getElementById('sender-email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-        
-        // 使用 mailto 協議開啟郵件客戶端
-        const mailtoLink = `mailto:ericyu32.ee10@nycu.edu.tw?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('From: ' + senderEmail + '\n\n' + message)}`;
-        window.location.href = mailtoLink;
-        
-        // 關閉模態框
-        closeModal();
-    }
 });
 
 function showModal(section) {

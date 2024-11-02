@@ -225,12 +225,41 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .skill-circle:hover {
     transform: translateY(-5px);
     border-color: var(--primary-color);
     background-color: rgba(0, 240, 255, 0.05);
+}
+
+/* 添加填充效果 */
+.skill-circle::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 240, 255, 0.15),
+        rgba(0, 240, 255, 0.05)
+    );
+    transition: height 0.3s ease-out;
+    z-index: 0;
+}
+
+.skill-circle:hover::before {
+    height: 100%;
+}
+
+/* 確保文字在填充效果上方 */
+.skill-circle span {
+    position: relative;
+    z-index: 1;
 }
 
 /* Responsive Design */
@@ -440,4 +469,52 @@ nav {
     margin: 0 4rem;
     white-space: pre-line;
     line-height: 1.8;
+}
+
+/* PDF Viewer Styles */
+.pdf-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--section-bg);
+    border-radius: 8px;
+    border: 1px solid var(--hover-color);
+}
+
+.pdf-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: var(--dark-bg);
+    border-radius: 4px;
+}
+
+.pdf-controls button {
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pdf-controls button:hover {
+    opacity: 0.8;
+}
+
+.pdf-controls span {
+    color: var(--text-color);
+}
+
+#pdf-render {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    background-color: #fff;
 }

@@ -100,7 +100,14 @@ function showModal(section) {
     modalBody.innerHTML = content;
     
     modal.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // 防止背景滚动
+    document.body.style.overflow = 'hidden';
+
+    // 如果是需要显示 PDF 的部分，初始化 PDF
+    if (section === 'industry-analysis') {
+        initPDF('value.pdf', 'pdf-render', 'page-num', 'page-count', 'prev', 'next');
+    } else if (section === 'ml-project') {
+        initPDF('Research.pdf', 'pdf-render-research', 'page-num-research', 'page-count-research', 'prev-research', 'next-research');
+    }
 }
 
 function closeModal() {
@@ -198,14 +205,70 @@ function getContentForSection(section) {
     return contents[section] || '';
 }
 
-// 將 PDF 初始化邏輯封裝成函數
-function initPDF() {
-    pdfjsLib.getDocument('value.pdf').promise.then(function(pdfDoc_) {
-        pdfDoc = pdfDoc_;
-        document.getElementById('page-count').textContent = pdfDoc.numPages;
+// 修改 PDF 初始化函數，使其更通用
+function initPDF(pdfPath, canvasId, pageNumId, pageCountId, prevBtnId, nextBtnId) {
+    let pdfDoc = null,
+        pageNum = 1,
+        pageRendering = false,
+        pageNumPending = null,
+        scale = 1.5;
+
+    pdfjsLib.getDocument(pdfPath).promise.then(function(pdf) {
+        pdfDoc = pdf;
+        document.getElementById(pageCountId).textContent = pdf.numPages;
+        
+        // 渲染第一頁
         renderPage(pageNum);
 
-        document.getElementById('prev').addEventListener('click', onPrevPage);
-        document.getElementById('next').addEventListener('click', onNextPage);
+        // 添加按鈕事件監聽器
+        document.getElementById(prevBtnId).addEventListener('click', onPrevPage);
+        document.getElementById(nextBtnId).addEventListener('click', onNextPage);
     });
+
+    function renderPage(num) {
+        pageRendering = true;
+        pdfDoc.getPage(num).then(function(page) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            const viewport = page.getViewport({scale: scale});
+
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            const renderContext = {
+                canvasContext: ctx,
+                viewport: viewport
+            };
+            
+            page.render(renderContext).promise.then(function() {
+                pageRendering = false;
+                if (pageNumPending !== null) {
+                    renderPage(pageNumPending);
+                    pageNumPending = null;
+                }
+            });
+
+            document.getElementById(pageNumId).textContent = num;
+        });
+    }
+
+    function onPrevPage() {
+        if (pageNum <= 1) return;
+        pageNum--;
+        queueRenderPage(pageNum);
+    }
+
+    function onNextPage() {
+        if (pageNum >= pdfDoc.numPages) return;
+        pageNum++;
+        queueRenderPage(pageNum);
+    }
+
+    function queueRenderPage(num) {
+        if (pageRendering) {
+            pageNumPending = num;
+        } else {
+            renderPage(num);
+        }
+    }
 } 

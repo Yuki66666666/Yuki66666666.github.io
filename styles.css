@@ -518,3 +518,16 @@ nav {
     display: block;
     background-color: #fff;
 }
+
+/* 添加特定的圖片大小控制 */
+.image-container img[alt="ITRI Experience"] {
+    width: 80%;  /* 或其他您想要的大小 */
+    margin: 0 auto;
+    display: block;
+}
+
+/* 如果需要更精確的控制 */
+[data-section="ai-software-engineer"] .image-container {
+    max-width: 600px;  /* 調整這個值來控制最大寬度 */
+    margin: 0 auto;
+}

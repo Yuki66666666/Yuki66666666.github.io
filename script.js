@@ -168,11 +168,23 @@ function getContentForSection(section) {
     
     if (section === 'industry-analysis') {
         setTimeout(() => {
+            pageNum = 1;
+            
             const loadingTask = pdfjsLib.getDocument('value.pdf');
             loadingTask.promise.then(function(pdf) {
                 pdfDoc = pdf;
                 document.getElementById('page-count').textContent = pdf.numPages;
+                
                 renderPage(1);
+                
+                const prevButton = document.getElementById('prev');
+                const nextButton = document.getElementById('next');
+                
+                prevButton.replaceWith(prevButton.cloneNode(true));
+                nextButton.replaceWith(nextButton.cloneNode(true));
+                
+                document.getElementById('prev').addEventListener('click', onPrevPage);
+                document.getElementById('next').addEventListener('click', onNextPage);
             }).catch(function(error) {
                 console.error('Error loading PDF:', error);
                 document.querySelector('.pdf-viewer').innerHTML += `<p style="color: red;">Error loading PDF: ${error.message}</p>`;

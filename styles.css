@@ -536,13 +536,14 @@ nav {
 
 /* 調整 Machine Learning Project 的 PDF 大小 */
 [data-section="ml-project"] .pdf-viewer {
-    max-width: 300px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
 [data-section="ml-project"] canvas {
     width: 100% !important;
     height: auto !important;
+    max-height: 500px;
 }
 
 /* PDF 控制按鈕的位置調整 */
@@ -598,18 +599,21 @@ html {
 
 /* 添加項目卡片樣式 */
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
     margin-top: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .project-card {
+    width: 100%;
     background-color: var(--section-bg);
     border-radius: 8px;
     padding: 1.5rem;
     transition: transform 0.3s ease;
-    margin-bottom: 2rem;
 }
 
 .project-card:hover {

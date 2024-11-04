@@ -46,16 +46,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         modalBody.innerHTML = `
             <h3>Contact Me</h3>
-            <form class="contact-form" onsubmit="sendEmail(event)">
-                <input type="email" id="sender-email" placeholder="Your Email" required>
-                <input type="text" id="subject" placeholder="Subject" required>
-                <textarea id="message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/%E6%A3%8B%E7%BF%94-%E6%B8%B8-a22908273" target="_blank" class="social-icon">
-                    <i class="fab fa-linkedin"></i>
-                </a>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:ericyu32.ee10@nycu.edu.tw">ericyu32.ee10@nycu.edu.tw</a></p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/%E6%A3%8B%E7%BF%94-%E6%B8%B8-a22908273" target="_blank" class="social-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
             </div>
         `;
         
@@ -269,14 +266,7 @@ function getContentForSection(section) {
             <h3>Machine Learning Project</h3>
             <p>Sep. 2023 – Jul 2024</p>
             <p>Have a paper (2nd author) about Deep Learning (fine-grained ood), inclusive of a new architecture baseline and present a new dataset.</p>
-            <div class="pdf-viewer">
-                <div class="pdf-controls">
-                    <button id="prev-research">Previous</button>
-                    <span>Page: <span id="page-num-research">1</span> / <span id="page-count-research">1</span></span>
-                    <button id="next-research">Next</button>
-                </div>
-                <canvas id="pdf-render-research"></canvas>
-            </div>
+            <canvas id="pdf-render-research"></canvas>
         `,
         'academic-poster': `
             <h3>Academic Poster Competition 3rd place</h3>

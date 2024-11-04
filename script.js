@@ -93,14 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="projects-grid">
                 <div class="project-card">
                     <h3>Line-following-obstacle-avoiding-car</h3>
-                    <div class="pdf-viewer">
-                        <div class="pdf-controls">
-                            <button id="prev-car">Previous</button>
-                            <span>Page: <span id="page-num-car">1</span> / <span id="page-count-car">1</span></span>
-                            <button id="next-car">Next</button>
-                        </div>
-                        <canvas id="pdf-render-car"></canvas>
-                    </div>
                     <div class="link-container">
                         <a href="https://youtu.be/PghSKBrntiM" target="_blank" class="project-link">Watch Demo Video</a>
                     </div>
@@ -116,11 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
-
-        // 初始化 PDF
-        setTimeout(() => {
-            initPDF('self_driving_car.pdf', 'pdf-render-car', 'page-num-car', 'page-count-car', 'prev-car', 'next-car');
-        }, 100);
     });
 });
 

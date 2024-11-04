@@ -536,14 +536,13 @@ nav {
 
 /* 調整 Machine Learning Project 的 PDF 大小 */
 [data-section="ml-project"] .pdf-viewer {
-    max-width: 100%;
+    max-width: 200px; /* 更小的寬度，原本是 1000px */
     margin: 0 auto;
 }
 
 [data-section="ml-project"] canvas {
     width: 100% !important;
     height: auto !important;
-    max-height: 500px;
 }
 
 /* PDF 控制按鈕的位置調整 */
@@ -662,4 +661,84 @@ html {
 
 .social-icon:hover {
     transform: translateY(-3px);
+}
+
+/* 改進響應式設計 */
+@media (max-width: 768px) {
+    /* 調整導航欄 */
+    header {
+        padding: 1rem;
+    }
+
+    .nav-links {
+        display: none; /* 在小螢幕上隱藏導航連結 */
+    }
+
+    /* 調整標題大小 */
+    .hero-content h1 {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    /* 調整內容間距 */
+    .section {
+        padding: 60px 1rem;
+        margin-top: 80px;
+    }
+
+    .section-content p {
+        margin: 0 1rem;
+        font-size: 1.2rem;
+    }
+
+    /* 調整網格佈局 */
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .grid-item {
+        padding: 1.5rem;
+        min-height: auto;
+    }
+
+    /* 調整技能圓圈 */
+    .skills-grid {
+        gap: 0.5rem;
+    }
+
+    .skill-circle {
+        width: 80px;
+        height: 80px;
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    /* 調整模態框 */
+    .modal-content {
+        width: 95%;
+        margin: 2vh auto;
+        padding: 1rem;
+    }
+
+    /* 調整項目卡片 */
+    .project-card {
+        padding: 1rem;
+    }
+}
+
+/* 添加更小螢幕的樣式 */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .content-item {
+        padding: 1rem;
+    }
 }

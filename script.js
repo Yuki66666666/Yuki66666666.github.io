@@ -62,6 +62,66 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
     });
+
+    // 修改導航點擊事件
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            
+            if (targetId === 'home') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+
+    // 修改 View My Work 按鈕的功能
+    document.querySelector('.cta-button').addEventListener('click', function() {
+        const modal = document.getElementById('contentModal');
+        const modalBody = modal.querySelector('.modal-body');
+        
+        modalBody.innerHTML = `
+            <h2>Some of My Other Side Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Line-following-obstacle-avoiding-car</h3>
+                    <div class="pdf-viewer">
+                        <div class="pdf-controls">
+                            <button id="prev-car">Previous</button>
+                            <span>Page: <span id="page-num-car">1</span> / <span id="page-count-car">1</span></span>
+                            <button id="next-car">Next</button>
+                        </div>
+                        <canvas id="pdf-render-car"></canvas>
+                    </div>
+                    <div class="link-container">
+                        <a href="https://youtu.be/PghSKBrntiM" target="_blank" class="project-link">Watch Demo Video</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>stm32f407-embedded-monitor-game</h3>
+                    <div class="link-container">
+                        <a href="https://youtu.be/D2WXBB-nEds" target="_blank" class="project-link">Watch Demo Video</a>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+
+        // 初始化 PDF
+        setTimeout(() => {
+            initPDF('self_driving_car.pdf', 'pdf-render-car', 'page-num-car', 'page-count-car', 'prev-car', 'next-car');
+        }, 100);
+    });
 });
 
 function showModal(section) {
@@ -243,29 +303,3 @@ function getContentForSection(section) {
     
     return contents[section] || '';
 }
-
-// 添加 View My Work 按鈕的功能
-document.querySelector('.cta-button').addEventListener('click', function() {
-    const modal = document.getElementById('contentModal');
-    const modalBody = modal.querySelector('.modal-body');
-    
-    modalBody.innerHTML = `
-        <h2>My Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>AI Robotic Project</h3>
-                <p>A startup project at ITRI focusing on industrial automation...</p>
-                <img src="./images/itri.jpg" alt="ITRI Project">
-            </div>
-            <div class="project-card">
-                <h3>Deep Learning Research</h3>
-                <p>Research on fine-grained out-of-distribution detection...</p>
-                <img src="./images/research.jpg" alt="Research Project">
-            </div>
-            <!-- Add more project cards as needed -->
-        </div>
-    `;
-    
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}); 

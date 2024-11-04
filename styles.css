@@ -536,7 +536,7 @@ nav {
 
 /* 調整 Machine Learning Project 的 PDF 大小 */
 [data-section="ml-project"] .pdf-viewer {
-    max-width: 400px;
+    max-width: 300px;
     margin: 0 auto;
 }
 
@@ -609,6 +609,7 @@ html {
     border-radius: 8px;
     padding: 1.5rem;
     transition: transform 0.3s ease;
+    margin-bottom: 2rem;
 }
 
 .project-card:hover {

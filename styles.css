@@ -758,3 +758,26 @@ html {
 .contact-info a:hover {
     opacity: 0.8;
 }
+
+/* 調整表單按鈕區域的樣式 */
+.form-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.form-buttons button {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.form-buttons .social-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.form-buttons .social-icon:hover {
+    transform: translateY(-3px);
+}

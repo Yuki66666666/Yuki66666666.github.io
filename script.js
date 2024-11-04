@@ -8,12 +8,21 @@ function sendEmail(event) {
     const subject = document.getElementById('subject').value;
     const message = document.getElementById('message').value;
     
-    // 使用 mailto 協議開啟郵件客戶端
+    // 使用 mailto 協議，但添加更多郵件資訊
     const mailtoLink = `mailto:ericyu32.ee10@nycu.edu.tw?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('From: ' + senderEmail + '\n\n' + message)}`;
+    
+    // 開啟默認郵件客戶端
     window.location.href = mailtoLink;
     
+    // 清空表單
+    document.getElementById('sender-email').value = '';
+    document.getElementById('subject').value = '';
+    document.getElementById('message').value = '';
+    
     // 關閉模態框
-    closeModal();
+    setTimeout(() => {
+        closeModal();
+    }, 500);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -46,14 +55,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
         modalBody.innerHTML = `
             <h3>Contact Me</h3>
-            <div class="contact-info">
-                <p>Email: <a href="mailto:ericyu32.ee10@nycu.edu.tw">ericyu32.ee10@nycu.edu.tw</a></p>
-                <div class="social-links">
+            <form class="contact-form" onsubmit="sendEmail(event)">
+                <input type="email" id="sender-email" placeholder="Your Email" required>
+                <input type="text" id="subject" placeholder="Subject" required>
+                <textarea id="message" placeholder="Your Message" required></textarea>
+                <div class="form-buttons">
+                    <button type="submit">Send Message</button>
                     <a href="https://www.linkedin.com/in/%E6%A3%8B%E7%BF%94-%E6%B8%B8-a22908273" target="_blank" class="social-icon">
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </div>
-            </div>
+            </form>
         `;
         
         modal.style.display = 'block';
@@ -90,6 +102,14 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="projects-grid">
                 <div class="project-card">
                     <h3>Line-following-obstacle-avoiding-car</h3>
+                    <div class="pdf-viewer">
+                        <div class="pdf-controls">
+                            <button id="prev-car">Previous</button>
+                            <span>Page: <span id="page-num-car">1</span> / <span id="page-count-car">1</span></span>
+                            <button id="next-car">Next</button>
+                        </div>
+                        <canvas id="pdf-render-car"></canvas>
+                    </div>
                     <div class="link-container">
                         <a href="https://youtu.be/PghSKBrntiM" target="_blank" class="project-link">Watch Demo Video</a>
                     </div>
@@ -105,6 +125,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
+
+        // 初始化 PDF
+        setTimeout(() => {
+            initPDF('self_driving_car.pdf', 'pdf-render-car', 'page-num-car', 'page-count-car', 'prev-car', 'next-car');
+        }, 100);
     });
 });
 

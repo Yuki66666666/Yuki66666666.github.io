@@ -781,3 +781,21 @@ html {
 .form-buttons .social-icon:hover {
     transform: translateY(-3px);
 }
+
+/* 添加 or 分隔符的樣式 */
+.or-divider {
+    color: var(--secondary-color);
+    margin: 0 1rem;
+    font-size: 1rem;
+}
+
+/* 調整 self_driving_car.pdf 的大小 */
+.project-card .pdf-viewer {
+    max-width: 200px; /* 縮小到原本的五分之一 */
+    margin: 0 auto;
+}
+
+.project-card canvas {
+    width: 100% !important;
+    height: auto !important;
+}

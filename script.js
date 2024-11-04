@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <textarea id="message" placeholder="Your Message" required></textarea>
                 <div class="form-buttons">
                     <button type="submit">Send Message</button>
+                    <span class="or-divider">or</span>
                     <a href="https://www.linkedin.com/in/%E6%A3%8B%E7%BF%94-%E6%B8%B8-a22908273" target="_blank" class="social-icon">
                         <i class="fab fa-linkedin"></i>
                     </a>

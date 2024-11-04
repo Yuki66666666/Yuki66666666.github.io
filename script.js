@@ -52,6 +52,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <textarea id="message" placeholder="Your Message" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/%E6%A3%8B%E7%BF%94-%E6%B8%B8-a22908273" target="_blank" class="social-icon">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
         `;
         
         modal.style.display = 'block';
@@ -172,6 +177,9 @@ function getContentForSection(section) {
             <div class="image-container">
                 <img src="./images/yef.jpg" alt="YEF Experience">
             </div>
+            <div class="link-container">
+                <a href="https://medium.com/%E4%BB%98%E8%AB%B8%E8%A1%8C%E5%8B%95%E7%9A%84%E5%A4%A2%E6%83%B3%E5%AE%B6/take-the-risk-%E9%9B%BB%E6%A9%9F%E4%BA%BA%E7%9A%84%E5%95%86%E6%A5%AD%E7%9F%A5%E8%AD%98%E5%95%9F%E8%92%99%E4%B9%8B%E6%97%85-e7740ea94cb6" target="_blank" class="project-link">Read My Story</a>
+            </div>
         `,
         'atcc': `
             <h3>ATCC 20th - National Third Place</h3>
@@ -179,6 +187,9 @@ function getContentForSection(section) {
             <p>Helping TSMC build connection between enterprise and college. By holding tea party and Installation art, we promoted femininity and succeed to become the representative team of TSMC, got the third place at last (from over thousands of teams around Taiwan).</p>
             <div class="image-container">
                 <img src="./images/atcc.jpg" alt="ATCC Experience">
+            </div>
+            <div class="link-container">
+                <a href="https://atcc.co/%E6%AD%B7%E5%B1%86%E7%AB%B6%E8%B3%BD%E5%9B%9E%E9%A1%A7-20th-atcc/" target="_blank" class="project-link">View Competition Details</a>
             </div>
         `,
         'student-ambassador': `
@@ -231,4 +242,30 @@ function getContentForSection(section) {
     };
     
     return contents[section] || '';
-} 
+}
+
+// 添加 View My Work 按鈕的功能
+document.querySelector('.cta-button').addEventListener('click', function() {
+    const modal = document.getElementById('contentModal');
+    const modalBody = modal.querySelector('.modal-body');
+    
+    modalBody.innerHTML = `
+        <h2>My Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>AI Robotic Project</h3>
+                <p>A startup project at ITRI focusing on industrial automation...</p>
+                <img src="./images/itri.jpg" alt="ITRI Project">
+            </div>
+            <div class="project-card">
+                <h3>Deep Learning Research</h3>
+                <p>Research on fine-grained out-of-distribution detection...</p>
+                <img src="./images/research.jpg" alt="Research Project">
+            </div>
+            <!-- Add more project cards as needed -->
+        </div>
+    `;
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}); 
